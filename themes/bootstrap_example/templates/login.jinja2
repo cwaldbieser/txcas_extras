@@ -31,10 +31,12 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form" method="POST" action="" >
+      <form class="form-signin" role="form" method="POST" action="{{request.path}}" >
         <h2 class="form-signin-heading">Please sign in</h2>
-        {% if service|trim != '' %}
-        <p>Service: {{service}}</p>
+        {% if service_entry and service_entry.ui and service_entry.ui.name %}
+        <p>Service: {{ service_entry.ui.name }}</p>
+        {% elif service|trim != '' %}
+        <p>Service: {{ service }}</p>
         {% endif %}
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
@@ -46,6 +48,7 @@
         </div>
         -->
         <input type="hidden" name="lt" value="{{login_ticket}}" >
+        <input type="hidden" name="service" value="{{service}}" >
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
 
