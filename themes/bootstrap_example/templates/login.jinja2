@@ -32,6 +32,9 @@
     <div class="container">
 
       <form class="form-signin" role="form" method="POST" action="{{request.path}}" >
+        {% if failed %}
+        <h3><span class="label label-danger">Login Failed.  Please try again.</span></h3>
+        {% endif %}
         <h2 class="form-signin-heading">Please sign in</h2>
         {% if service_entry and service_entry.ui and service_entry.ui.name %}
         <p>Service: {{ service_entry.ui.name }}</p>
